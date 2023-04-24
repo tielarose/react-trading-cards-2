@@ -12,7 +12,7 @@ def show_homepage():
 def show_cards():
     """Show the trading cards"""
 
-    return ('this is the cards page')
+    return render_template("cards2.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
