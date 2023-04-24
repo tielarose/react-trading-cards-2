@@ -60,13 +60,14 @@ function TradingCard(props) {
 }
 
 function TradingCardContainer() {
-  const floatCard = {
-    name: "Float",
-    skill: "baking pretzels",
-    imgUrl: "/static/img/float.jpg"
-  };
+  const [cards, setCards] = React.useState([]);
 
-  const [cards, setCards] = React.useState([floatCard]);
+  React.useEffect(() => {
+    fetch("/cards.json")
+      .then((response) => response.json())
+      .then((responseJson) => setCards(responseJson.cards));
+  }, []);
+
   const tradingCards = [];
 
   for (const currentCard of cards) {
