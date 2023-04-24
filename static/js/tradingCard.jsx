@@ -52,15 +52,65 @@ const tradingCardData = [
 function TradingCard(props) {
   return (
     <div className="card">
-      <p>Name: {props.name}</p>
+      <p> Name: {props.name}</p>
       <img src={props.imgUrl} alt="profile" />
-      <p>Skill: {props.skill} </p>
+      <p> Skill: {props.skill} </p>
     </div>
+  );
+}
+
+function AddTradingCard(props) {
+  const [name, setName] = React.useState("");
+  const [skill, setSkill] = React.useState("");
+
+  function addNewCard() {
+    fetch("/add-card", {
+      method: "POST",
+      body: JSON.stringify({ name, skill }),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const cardAdded = responseJson.cardAdded;
+        props.addCard(cardAdded);
+        alert(`Card added for ${responseJson.name}`);
+      });
+  }
+  return (
+    <React.Fragment>
+      <h2>Add New Trading Card</h2>
+      <label htmlFor="nameInput">Name</label>
+      <input
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+        id="nameInput"
+        style={{ marginLeft: "5px" }}
+      />
+      <label
+        htmlFor="skillInput"
+        style={{ marginLeft: "10px", marginRight: "5px" }}
+      >
+        Skill
+      </label>
+      <input
+        value={skill}
+        onChange={(event) => setSkill(event.target.value)}
+        id="skillInput"
+      />
+      <button style={{ marginLeft: "10px" }} onClick={addNewCard}>
+        Add
+      </button>
+    </React.Fragment>
   );
 }
 
 function TradingCardContainer() {
   const [cards, setCards] = React.useState([]);
+
+  function addCard(newCard) {
+    const currentCards = [...cards];
+    setCards([...currentCards, newCard]);
+  }
 
   React.useEffect(() => {
     fetch("/cards.json")
@@ -69,6 +119,8 @@ function TradingCardContainer() {
   }, []);
 
   const tradingCards = [];
+
+  console.log("line 123, cards is ", cards);
 
   for (const currentCard of cards) {
     tradingCards.push(
@@ -81,7 +133,13 @@ function TradingCardContainer() {
     );
   }
 
-  return <div className="grid">{tradingCards}</div>;
+  return (
+    <React.Fragment>
+      <AddTradingCard addCard={addCard} />
+      <h2>Trading Cards </h2>
+      <div className="grid">{tradingCards}</div>
+    </React.Fragment>
+  );
 }
 
 ReactDOM.render(<TradingCardContainer />, document.getElementById("container"));
