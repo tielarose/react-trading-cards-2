@@ -8,5 +8,11 @@ def show_homepage():
 
     return render_template("homepage2.html")
 
+@app.route("/cards")
+def show_cards():
+    """Show the trading cards"""
+
+    return ('this is the cards page')
+
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

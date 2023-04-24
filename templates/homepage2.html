@@ -1,5 +1,7 @@
 {% extends 'base2.html' %} {% block title %}Homepage{% endblock %} {% block body
 %}
-<h1>Welcome to Ballonicorn's Trading Card Site!</h1>
-<p>Click <a href="/cards">here</a> to view the trading cards</p>
+<div id="app">{% endblock %}</div>
+
+{% block js%}
+<script src="/static/js/homepage2.jsx" type="text/jsx"></script>
 {% endblock %}
