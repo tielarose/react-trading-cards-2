@@ -1,4 +1,4 @@
-const tradingCardData = [
+const jsxCardData = [
   {
     name: "Balloonicorn",
     skill: "video games",
@@ -43,8 +43,42 @@ function TradingCard(props) {
 
 function AllCards() {
   const allCards = [];
+  const [cards, setCards] = React.useState([]);
 
-  for (const card of tradingCardData) {
+  console.log(Date.now(), "line 48, cards is: ", cards);
+
+  React.useEffect(() => {
+    fetch("/api/cards")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(Date.now(), "line 54, cards is: ", cards);
+        setCards(data.serverCards);
+        console.log(Date.now(), "line 56, cards is: ", cards);
+      });
+  }, []);
+
+  for (const card of cards) {
+    console.log(Date.now(), "line 61, cards is: ", cards);
+    allCards.push(
+      <TradingCard
+        key={card.cardId}
+        name={card.name}
+        skill={card.skill}
+        imgUrl={card.imgUrl}
+      />
+    );
+  }
+
+  return <React.Fragment>{allCards}</React.Fragment>;
+}
+
+{
+  /* The function below the data stored in this JSX file, but is replaced by the function above that uses the data stored on the server
+
+function AllCards() {
+  const allCards = [];
+
+  for (const card of jsxCardData) {
     allCards.push(
       <TradingCard
         key={card.cardId}
@@ -57,6 +91,7 @@ function AllCards() {
   }
 
   return <React.Fragment>{allCards}</React.Fragment>;
+} */
 }
 
 ReactDOM.render(

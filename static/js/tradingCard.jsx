@@ -1,12 +1,12 @@
 const tradingCardData = [
   {
-    name: "Balloonicorn",
+    name: "B from JSX",
     skill: "video games",
     imgUrl: "/static/img/balloonicorn.jpg",
     cardId: 1
   },
   {
-    name: "Float",
+    name: "F from JSX",
     skill: "baking pretzels",
     imgUrl: "/static/img/float.jpg",
     cardId: 2

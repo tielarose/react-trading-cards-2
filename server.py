@@ -4,13 +4,13 @@ app = Flask(__name__)
 
 CARD_DATA = [
     {
-        "name": "Balloonicorn",
+        "name": "B from Server",
         "skill": "video games",
         "imgUrl": "/static/img/balloonicorn.jpg",
         "cardId": 1,
     },
     {
-        "name": "Float",
+        "name": "F from server",
         "skill": "baking pretzels",
         "imgUrl": "/static/img/float.jpg",
         "cardId": 2,
