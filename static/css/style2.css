@@ -1,4 +1,5 @@
 h1,
+h2,
 p {
   text-align: center;
 }
@@ -20,10 +21,14 @@ img {
   border-radius: 10px;
 }
 
+form {
+  margin: 10px 0;
+}
 #trading-cards-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin: 20px 0;
 }
 
 .trading-card {
@@ -35,4 +40,17 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#add-card-form {
+  padding: 10px;
+  background-color: rgb(7, 153, 201);
+  width: 70%;
+  margin: auto;
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  justify-content: space-around;
 }

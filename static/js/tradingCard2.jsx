@@ -41,24 +41,34 @@ function TradingCard(props) {
   );
 }
 
+function AddCard() {
+  return (
+    <React.Fragment>
+      <h2>Add a New Card: </h2>
+      <form action="/addCard">
+        <label htmlFor="name">Name: </label>
+        <input type="text" name="name" />
+        <label htmlFor="skill">Skill:</label>
+        <input type="text" name="skill" />
+        <button type="submit">Add Card</button>
+      </form>
+    </React.Fragment>
+  );
+}
+
 function AllCards() {
   const allCards = [];
   const [cards, setCards] = React.useState([]);
-
-  console.log(Date.now(), "line 48, cards is: ", cards);
 
   React.useEffect(() => {
     fetch("/api/cards")
       .then((response) => response.json())
       .then((data) => {
-        console.log(Date.now(), "line 54, cards is: ", cards);
         setCards(data.serverCards);
-        console.log(Date.now(), "line 56, cards is: ", cards);
       });
   }, []);
 
   for (const card of cards) {
-    console.log(Date.now(), "line 61, cards is: ", cards);
     allCards.push(
       <TradingCard
         key={card.cardId}
@@ -93,6 +103,8 @@ function AllCards() {
   return <React.Fragment>{allCards}</React.Fragment>;
 } */
 }
+
+ReactDOM.render(<AddCard />, document.querySelector("#add-card-form"));
 
 ReactDOM.render(
   <AllCards />,

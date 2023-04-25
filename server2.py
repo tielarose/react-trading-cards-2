@@ -41,6 +41,12 @@ def get_cards_json():
 
     return jsonify({"serverCards": CARD_DATA})
 
+@app.route("/addCard")
+def add_card():
+    """Process the add card form"""
+
+    return ("this is where you go if you submit the form")
+
 
 
 if __name__ == '__main__':
